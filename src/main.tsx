@@ -1,22 +1,26 @@
 import ReactDOM from 'react-dom/client';
 import { StrictMode } from 'react';
 
-import { RouterProvider, Router, Route, RootRoute } from '@tanstack/react-router';
+import { RouterProvider, Router, Route, RootRoute, redirect } from '@tanstack/react-router';
 
-import Layout from './Layout';
 import { Athletes, Competitions, Home, Workouts } from './pages';
 
 import './index.css';
+import { App } from './App';
 
 
+const rootRoute = new RootRoute();
 
-const rootRoute = new RootRoute({
-  component: Layout,
+const AppRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/',
+  component: App,
 });
 
 const HomeRoute = new Route({
   // beforeLoad: async () => {
-  //   if(id !== 'isAuth'){
+  //   const isAuth = false
+  //   if(!isAuth){
   //     throw redirect({
   //       to: '/athletes',
   //     })
@@ -58,7 +62,9 @@ const workoutsRoute = new Route({
 
 
 
-const routeTree = rootRoute.addChildren([HomeRoute,  
+const routeTree = rootRoute.addChildren([
+  AppRoute,
+  HomeRoute,  
   competitionsRoute, 
   workoutsRoute,
   athletesRoute.addChildren([athletesRouteIndex, athleteRoute])

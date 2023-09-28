@@ -27,7 +27,11 @@
   font-style:normal;
 }
 
-
+nav{
+  max-width: 1950px;
+  display: flex;
+  justify-content: end;
+}
 main{
   max-width: 1950px;
   margin: 0 auto;

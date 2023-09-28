@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { UserAthletesTable } from "../home/components"
 
-import { Bar, BarChart, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import Layout from "@/Layout";
 
 
 
@@ -69,6 +69,7 @@ export const Athletes = () => {
 
 
   return (
+    <Layout>
     <main className="height-screen">
 
       <section className="p-3">
@@ -94,7 +95,6 @@ export const Athletes = () => {
       </section>
 
       <section className="p-3 grid grid-cols-2 gap-6">
-        <div>
           
         <Card className="pr-6 pt-6">
           <ResponsiveContainer width="100%" height={350}>
@@ -120,10 +120,6 @@ export const Athletes = () => {
             </BarChart>
           </ResponsiveContainer>
         </Card>
-        <Button className="mt-6">
-          Nuevo Atleta
-        </Button>
-        </div>
 
         <Card className="pr-6 pt-6">
         <ResponsiveContainer width="100%" height="100%">
@@ -162,5 +158,6 @@ export const Athletes = () => {
       </section>
 
     </main>
+    </Layout>
   )
 }

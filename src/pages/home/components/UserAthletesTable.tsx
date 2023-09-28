@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
@@ -43,15 +44,18 @@ export const UserAthletesTable = () => {
         
       ]
   return (
-    <Card className="p-3">
+    <Card>
         <Table>
           <TableCaption>A list of your recent names.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">name</TableHead>
+              <TableHead className="w-[300px]">Atleta</TableHead>
               <TableHead>Sentadilla</TableHead>
-              <TableHead>Bench</TableHead>
-              <TableHead>Deadlift</TableHead>
+              <TableHead>Banco</TableHead>
+              <TableHead>Despegue</TableHead>
+              <TableHead className="w-1/6 p-2">
+                <Button size={'lg'}>Nuevo atleta</Button>
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

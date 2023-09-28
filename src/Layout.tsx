@@ -4,9 +4,13 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuT
 import { Separator } from "@/components/ui/separator";
 import { ThemeProvider } from "./components/ui/theme-provider";
 import { ModeToggle } from "./components/ui/mode-toggle";
+import * as React from 'react';
 
+type LayoutProps = {
+  children: React.ReactNode
+}
 
-function Layout() {
+const Layout = ({children}: LayoutProps) => {
   
  
   const routes = [
@@ -57,7 +61,7 @@ function Layout() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       
-      <NavigationMenu className="ml-auto">
+      <NavigationMenu>
         <NavigationMenuList>
           { routes.map((route, index ) => (
               <NavigationMenuItem 
@@ -71,8 +75,8 @@ function Layout() {
       </NavigationMenu>
 
       <Separator />
-
       <Outlet />
+      {children}
       </ThemeProvider>
   )
 }
