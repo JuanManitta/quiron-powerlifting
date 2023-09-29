@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { StrictMode } from 'react';
 
-import { RouterProvider, Router, Route, RootRoute, redirect } from '@tanstack/react-router';
+import { RouterProvider, Router, Route, RootRoute } from '@tanstack/react-router';
 
 import { Athletes, Competitions, Home, Workouts } from './pages';
 
