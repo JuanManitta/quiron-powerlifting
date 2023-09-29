@@ -28,15 +28,12 @@
 }
 
 nav{
-  max-width: 1950px;
+  max-width: 1440px;
   display: flex;
   justify-content: flex-end;
+  margin: 0 auto
 }
-main{
-  max-width: 1950px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+
 .height-screen{
   min-height: calc(100vh - 41px);
 }
