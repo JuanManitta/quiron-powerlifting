@@ -30,7 +30,7 @@
 nav{
   max-width: 1950px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 main{
   max-width: 1950px;

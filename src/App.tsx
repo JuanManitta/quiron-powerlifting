@@ -51,6 +51,7 @@ Crear cuenta </Button>
       </NavigationMenu>
       <Separator />
       <main>
+        
         <section className="grid grid-cols-2 h-screen justify-center items-center max-w-7xl m-auto">
           <div className="col-span-2 md:col-span-1">
             <h1 className="text-6xl text-center font-bold mb-4">DASH Powerlifting</h1>
@@ -63,7 +64,8 @@ Crear cuenta </Button>
             <h2>Imagen aquí</h2>
           </div>
         </section>
-        <section>
+
+        <section className="pb-6">
           <h2 className="text-3xl text-center mb-4">Entrenadores de todo el mundo ya estan usando DASH Powerlifting</h2>
           <div className="p-4 bg-primary flex justify-around">
             <div className="flex flex-col">
@@ -80,6 +82,48 @@ Crear cuenta </Button>
             </div>
           </div>
         </section>
+
+        <section className="grid grid-cols-2 justify-center py-6">
+
+          <div className="col-span-2">
+            <h3 className="text-center text-6xl py-12">¿Cómo funciona?</h3>
+          </div>
+
+          <div className="col-span-2 max-w-7xl mx-auto ">
+            <p className="text-center text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam vitae impedit reprehenderit aliquid ullam, magni fugit deleniti amet dignissimos et eaque rem dolorum natus quia earum aliquam accusamus voluptas nemo?</p>
+          </div>
+
+          <div className="col-span-1 py-6">
+            <p>imagen</p>
+          </div>
+          <div className="col-span-1 py-6">
+            <p>imagen</p>
+          </div>
+          <div className="ml-auto col-span-2">
+            <Button size='lg'>
+              Comenzar
+            </Button>
+          </div>
+
+        </section>
+
+        <section className="grid grid-cols-2 py-6">
+          <div className="col-span-2">
+            <h4 className="text-4xl text-center mb-4 py-12">Estadísticas en tiempo real</h4>
+          </div>
+          <div className="col-span-1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, odit. Nostrum non in harum assumenda reprehenderit cumque tempora aliquid quas voluptate ullam ex, magni est ipsum iste quam! Recusandae, autem.
+          </div>
+          <div className="col-span-1">
+            iconos
+          </div>
+          <div>
+            <Button>
+              Comenzar
+            </Button>
+          </div>
+        </section>
+
       </main>
     </ThemeProvider>
   )
