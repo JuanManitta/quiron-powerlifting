@@ -7,6 +7,7 @@ import { Athletes, Competitions, Home, Workouts } from './pages';
 
 import './index.css';
 import { App } from './App';
+import { Login, Register } from './pages/auth';
 
 
 const rootRoute = new RootRoute();
@@ -15,6 +16,20 @@ const AppRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/',
   component: App,
+});
+
+
+
+const AuthLogin = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/login',
+  component: Login,
+});
+
+const AuthRegister = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/register',
+  component: Register,
 });
 
 const HomeRoute = new Route({
@@ -67,7 +82,9 @@ const routeTree = rootRoute.addChildren([
   HomeRoute,  
   competitionsRoute, 
   workoutsRoute,
-  athletesRoute.addChildren([athletesRouteIndex, athleteRoute])
+  athletesRoute.addChildren([athletesRouteIndex, athleteRoute]),
+  AuthLogin, 
+  AuthRegister
 ]);
 
 const router = new Router({ routeTree });

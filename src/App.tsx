@@ -1,8 +1,7 @@
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@radix-ui/react-navigation-menu"
 import { ThemeProvider } from "./components/ui/theme-provider"
 import { ModeToggle } from "./components/ui/mode-toggle"
-import { Link } from '@tanstack/react-router';
-import { navigationMenuTriggerStyle } from "./components/ui/navigation-menu";
+import { useNavigate } from '@tanstack/react-router';
 import { Separator } from "./components/ui/separator";
 import { Button } from "./components/ui/button";
 
@@ -10,51 +9,33 @@ import  background1  from './assets/fondo-1.png';
 import { Facebook, Instagram, Mail, Twitter } from "lucide-react";
 
 export const App = () => {
-  const routes = [
-    {
-      link:
-        <Link to="/home"
-        activeProps={{ 
-          style:{
-          fontWeight:'bold', 
-          fontSize:'16px', 
-          color:'hsl(var(--muted-foreground))'
-          }}}>
-                <Button size='lg'> 
-Crear cuenta </Button>
-        </Link>
-      ,
-    },
-    {
-      link: 
-      <Link to="/home"
-      activeProps={{ 
-        style:{
-        fontWeight:'bold', 
-        fontSize:'16px', 
-        color:'hsl(var(--muted-foreground))'
-        }}}>
-        Ingresar
-      </Link>,
-    },
-  ];
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate({to: 'home'});
+  }
+
+
   return (
     <ThemeProvider>
       <NavigationMenu>
         <NavigationMenuList className="p-4 flex items-center">
-          { routes.map((route, index ) => (
-              <NavigationMenuItem 
-                key={index} 
-                className={navigationMenuTriggerStyle()}>
-                { route.link }
-              </NavigationMenuItem>
-            ))}
-              <ModeToggle/>
+          <NavigationMenuItem>
+            <Button onClick={handleNavigate} className="mr-3" size='lg'>
+              Crear cuenta 
+            </Button>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Button onClick={handleNavigate} variant='ghost' className="mr-3" size='lg'>
+              Ingresar
+            </Button>
+          </NavigationMenuItem>
+          <ModeToggle/>
         </NavigationMenuList>
       </NavigationMenu>
       <Separator />
       <main>
-        
         <section className="p-6">
           <div className="grid grid-cols-2 h-screen justify-center items-center m-auto max-w-7xl ">
             <div className="col-span-2 lg:col-span-1 flex justify-center lg:justify-end">
@@ -148,7 +129,6 @@ Crear cuenta </Button>
           </div>
       
         </section>
-
       </main>
       <footer className="bg-foreground p-6 text-accent">
         <section className="grid grid-cols-2 max-w-7xl m-auto py-12">
