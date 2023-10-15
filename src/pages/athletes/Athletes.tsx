@@ -1,8 +1,10 @@
 import { Card } from "@/components/ui/card"
-import { UserAthletesTable } from "../home/components"
 
 import { Bar, BarChart, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import Layout from "@/Layout";
+
+import './athletes.css';
+import { UserAthletesTable } from "./components/UserAthletesTable";
 
 
 
@@ -70,7 +72,7 @@ export const Athletes = () => {
 
   return (
     <Layout>
-    <main className="height-screen">
+    <main className="height-screen mx-auto">
 
       <section className="p-3">
         <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">

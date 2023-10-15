@@ -1,81 +1,72 @@
-import { Link, Outlet } from "@tanstack/react-router";
 
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator";
 import { ThemeProvider } from "./components/ui/theme-provider";
 import { ModeToggle } from "./components/ui/mode-toggle";
 import * as React from 'react';
+import { NavLink, useNavigate } from "react-router-dom";
+import { LogOut} from "lucide-react";
+import { Button } from "./components/ui/button";
+import { useDispatch } from "react-redux";
+import { logout } from "./store/auth/authSlice";
 
 type LayoutProps = {
   children: React.ReactNode
 }
 
 const Layout = ({children}: LayoutProps) => {
+
+  const dispath = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    dispath(logout());
+    navigate('/');
+  }
   
  
   const routes = [
     {
       link: 
-      <Link to="/home"
-      activeProps={{ 
-        style:{
-        fontWeight:'bold', 
-        fontSize:'16px', 
-        color:'hsl(var(--muted-foreground))'
-        }}}>
+      <NavLink to="/home">
         Home
-      </Link>,
+      </NavLink>,
     },
     {
-      link: <Link to="/athletes"
-      activeProps={{ 
-        style:{
-        fontWeight:'bold', 
-        fontSize:'16px', 
-        color:'hsl(var(--muted-foreground))'
-        }}}>Atletas
-      </Link>
+      link: <NavLink to="/athletes">
+        Atletas
+      </NavLink>
     },
     {
-      link: <Link to="/workouts"
-      activeProps={{ 
-        style:{
-        fontWeight:'bold', 
-        fontSize:'16px', 
-        color:'hsl(var(--muted-foreground))'
-        }}}>Entrenamientos
-      </Link>
+      link: <NavLink to="/workouts">
+        Entrenamientos
+      </NavLink>
     },
     {
-      link: <Link to="/competitions"
-      activeProps={{ 
-        style:{
-        fontWeight:'bold', 
-        fontSize:'16px', 
-        color:'hsl(var(--muted-foreground))'
-        }}}>Competiciones
-      </Link>
+      link: <NavLink to="/competitions">
+        Competiciones
+      </NavLink>
     },
   ];
   
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      
-      <NavigationMenu>
+      <NavigationMenu className="p-3">
         <NavigationMenuList>
-          { routes.map((route, index ) => (
-              <NavigationMenuItem 
-                key={index} 
-                className={navigationMenuTriggerStyle()}>
-                { route.link }
-              </NavigationMenuItem>
-            ))}
-              <ModeToggle/>
+          { routes.map((route, index) => (
+            <NavigationMenuItem id="nav_bar" key={index} className={navigationMenuTriggerStyle()}>
+              {route.link}
+            </NavigationMenuItem>
+          ))}
+          <Button variant='ghost' onClick={handleLogout}>
+            <LogOut/>
+          </Button>
+            <ModeToggle/>
         </NavigationMenuList>
       </NavigationMenu>
 
       <Separator />
-      <Outlet />
       {children}
       </ThemeProvider>
   )

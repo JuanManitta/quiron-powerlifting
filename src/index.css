@@ -34,8 +34,12 @@ nav{
   margin: 0 auto
 }
 
+#nav_bar a.active{
+  color: hsl(var(--muted-foreground));
+}
+
 .height-screen{
-  min-height: calc(100vh - 41px);
+  min-height: calc(100vh - 65px);
 }
 
 @layer base {

@@ -1,19 +1,22 @@
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@radix-ui/react-navigation-menu"
 import { ThemeProvider } from "./components/ui/theme-provider"
 import { ModeToggle } from "./components/ui/mode-toggle"
-import { useNavigate } from '@tanstack/react-router';
 import { Separator } from "./components/ui/separator";
 import { Button } from "./components/ui/button";
 
 import  background1  from './assets/fondo-1.png';
 import { Facebook, Instagram, Mail, Twitter } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+type Path = 'login' | 'register';
+
 
 export const App = () => {
 
   const navigate = useNavigate();
 
-  const handleNavigate = () => {
-    navigate({to: 'home'});
+  const handleNavigate = (path:Path) => {
+    navigate(path);
   }
 
 
@@ -22,12 +25,12 @@ export const App = () => {
       <NavigationMenu>
         <NavigationMenuList className="p-4 flex items-center">
           <NavigationMenuItem>
-            <Button onClick={handleNavigate} className="mr-3" size='lg'>
+            <Button onClick={() => handleNavigate('register')} className="mr-3" size='lg'>
               Crear cuenta 
             </Button>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Button onClick={handleNavigate} variant='ghost' className="mr-3" size='lg'>
+            <Button onClick={() => handleNavigate('login')} variant='ghost' className="mr-3" size='lg'>
               Ingresar
             </Button>
           </NavigationMenuItem>
