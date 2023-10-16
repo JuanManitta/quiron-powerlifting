@@ -125,7 +125,8 @@ export const Register = () => {
                 ) : null}
                 
                 <div className="grid grid-cols-2 gap-6 mt-4">
-                    <div className=" col-span-1">
+
+                    <div className="col-span-2 md:col-span-1">
                         <Label htmlFor="email">Nombre del gimnasio</Label>
                         <Input
                           className="mt-1"
@@ -143,7 +144,7 @@ export const Register = () => {
                     </div>
                     
 
-                    <div className="col-span-1 flex flex-col mt-1">
+                    <div className="col-span-2 md:col-span-1 flex flex-col mt-1">
                     <Label htmlFor="email" className="mb-1.5">Fecha de fundación del gimnasio</Label>
                         <Popover>
                           <PopoverTrigger asChild>
@@ -174,7 +175,8 @@ export const Register = () => {
                 <div className="grid grid-cols-3 gap-6 mt-12">
                 <Label htmlFor="email" className="col-span-3">Medallas obtenidas hasta la fecha</Label>
                 <Separator className="col-span-3"/>
-                  <div className="col-span-1">
+                
+                  <div className="col-span-3 md:col-span-1">
                     <Label htmlFor="email">Oro</Label>
                     <Input
                       className="mt-1"
@@ -191,7 +193,7 @@ export const Register = () => {
                         ) : null}
                   </div>
                   
-                  <div className="col-span-1">
+                  <div className="col-span-3 md:col-span-1">
                     <Label htmlFor="email">Plata</Label>
                     <Input
                       className="mt-1"
@@ -207,7 +209,7 @@ export const Register = () => {
                         </div>
                       ) : null}
                   </div>
-                  <div className="col-span-1">
+                  <div className="col-span-3 md:col-span-1">
                     <Label htmlFor="email">Bronce</Label>
                     <Input
                       className="mt-1"
