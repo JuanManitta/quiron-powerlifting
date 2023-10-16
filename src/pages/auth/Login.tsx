@@ -3,24 +3,31 @@ import { AuthLayout } from "."
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useFormik } from "formik"
-import { useDispatch } from "react-redux"
-import { login } from "@/store/auth/authSlice"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { startLoginUser } from "@/store/auth"
+import { RootState } from "@/store/store"
+import { useMemo } from "react"
+import { Alert, AlertTitle } from "@/components/ui/alert"
+import { XOctagon } from "lucide-react"
+import { LoginProps } from "./interfaces/auth-interfaces"
+
+
 
 export const Login = () => {
 
     const dispatch = useDispatch();
+    const { status, errorMessage } = useSelector((state: RootState) => state.auth);
+    const isCheckingAuth = useMemo(() => status === 'checking', [status]);
+
 
     const formik = useFormik({
         initialValues: {
           email: '',
           password: '',
         },
-          onSubmit: ( values: any ) => {
-            dispatch(login(values));
-            // guardar en localstorage
-            const user = JSON.stringify(values);
-            localStorage.setItem('user', user);
+          onSubmit: ( values: LoginProps ) => {
+            dispatch<any>(startLoginUser(values))
         },
       })
       
@@ -51,14 +58,20 @@ export const Login = () => {
                 </div>
             
             <a href="" className="text-sm">Olvidé mi contraseña</a>
+            <Alert className={`mt-6 ${!!errorMessage ? 'block' : 'hidden' }`}>
+                <XOctagon size={16} color="hsl(var(--primary)" />
+                  <AlertTitle className="m-0">{ errorMessage }</AlertTitle>
+                </Alert>
             <div className="mt-6">
-                <Button size='lg' type="submit" className="w-full">
+                <Button size='lg' type="submit" className="w-full"
+                    disabled={isCheckingAuth}>
                     Ingresar
                 </Button>
             </div>
             </form>
             <Link to="/auth/register" className="w-full">
-                <Button size='lg' variant='outline' className="w-full">
+                <Button size='lg' variant='outline' className="w-full"
+                    disabled={isCheckingAuth}>
                         Crear cuenta
                 </Button>
             </Link>

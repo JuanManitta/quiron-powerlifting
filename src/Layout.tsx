@@ -8,7 +8,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { LogOut} from "lucide-react";
 import { Button } from "./components/ui/button";
 import { useDispatch } from "react-redux";
-import { logout } from "./store/auth/authSlice";
+import { startLogout } from "./store/auth";
 
 type LayoutProps = {
   children: React.ReactNode
@@ -20,8 +20,7 @@ const Layout = ({children}: LayoutProps) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    dispath(logout());
+    dispath<any>(startLogout());
     navigate('/');
   }
   
