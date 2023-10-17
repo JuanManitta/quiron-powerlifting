@@ -4,15 +4,30 @@ import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import 'animate.css';
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 
 export const UserAthletesTable = () => {
 
-  const { athletes } = useSelector((state: RootState) => state.user);
+  const { athletes, savingAthlete } = useSelector((state: RootState) => state.user);
 
   return (
     <Card>
-      { athletes.length <= 0 ? 
+      { athletes.length === 0 ?
+        <div className="h-72 flex flex-col justify-center items-center">
+        <h1 className="p-3 font-bold text-lg md:text-3xl mb-6">
+          No hay atletas para mostrar
+        </h1>
+        <Link to='/athletes'>
+          <Button>
+            Ir a atletas
+          </Button>
+        </Link>
+      </div>
+      :
+      <>
+        { savingAthlete ? 
       <div className="flex justify-center items-center h-40">
         <ClipLoader color="#36d7b7" size={90} />
       </div>
@@ -37,6 +52,8 @@ export const UserAthletesTable = () => {
           ))}
         </TableBody>
       </Table> }
+      </>
+        }
     </Card>
   )
 }

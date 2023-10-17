@@ -8,12 +8,13 @@ export const UserBasicStatistics = () => {
 
   const { userData, savingUserData } = useSelector((state: RootState) => state.user );
 
+  const activeYears = calculateActiveYears(userData.foundation_date!)
   
   return (
     <Card className="grid grid-cols-12 w-full p-3 mb-12 md:mb-0">
       <div className="grid col-span-4 p-3 justify-center">
         { ! savingUserData ? <span className="mb-6 text-center text-8xl font-bold">
-          {calculateActiveYears(userData.foundation_date!)}
+          { activeYears }
         </span> 
         :
         <>

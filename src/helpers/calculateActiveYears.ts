@@ -10,6 +10,6 @@ export const calculateActiveYears = (foundation_date: string ): number => {
     const añosPasados = diferenciaMilisegundos / milisegundosEnUnAño;
   
     const añosPasadosRedondeados = Math.floor(añosPasados);
-  
+    
     return añosPasadosRedondeados;
   }

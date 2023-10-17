@@ -15,14 +15,34 @@ export const UserAthletesTable = () => {
  
   const { athletes, savingAthlete } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
+  
 
   const handleNavigate = (index: number) => {
     navigate(`/athletes/${index}`);
   }
 
   return (
-    <Card>
-      { ( athletes.length <= 0 ) || savingAthlete ? 
+    <Card>{ athletes.length === 0 ?
+      <div className="h-72 flex flex-col items-center justify-center">
+        <h1 className=" p-3 text-lg md:text-3xl text-center mb-6">Comenzá a agregar atletas a tu lista</h1>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button size='lg'>Nuevo atleta</Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle className="mb-4">Nuevo atleta</DialogTitle>
+              <DialogDescription>
+                Completa los campos para agregar un nuevo atleta.
+              </DialogDescription>
+            </DialogHeader>
+              <NewAthleteForm/>
+          </DialogContent>
+        </Dialog>
+      </div>
+      :
+      <>
+        { savingAthlete ? 
       <div className="flex justify-center items-center h-40">
         <ClipLoader color="#36d7b7" size={90} />
       </div>
@@ -73,6 +93,12 @@ export const UserAthletesTable = () => {
               </TableBody>
         </Table>
             } 
+      </>
+      
+    
+    
+    
+    }
       </Card>
   )
 }

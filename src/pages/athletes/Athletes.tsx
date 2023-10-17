@@ -5,70 +5,38 @@ import Layout from "@/Layout";
 
 import './athletes.css';
 import { UserAthletesTable } from "./components/UserAthletesTable";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+ 
 
 
 
 export const Athletes = () => {
 
-  const data = [
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-  
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-  
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-  
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-  
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-  
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-  
-    {
-      name: "Jan",
-      total: Math.floor(Math.random() * 50) + 10,
-    },
-  
-   
-  ];
+  const [labelSatckBar, setLabelSatckBar] = useState('squat');
+  const [labelLineBar, setLabelLineBar] = useState('deadlift')
 
+  const { athletes } = useSelector((state: RootState) => state.user);
+ 
+
+  const handleChangeStackBar = (value: string) => {
+    setLabelSatckBar(value);
+  }
+
+  const handleChangeLineBar = (value: string) => {
+    setLabelLineBar(value);
+  }
 
   return (
     <Layout>
@@ -97,12 +65,14 @@ export const Athletes = () => {
       </section>
 
       <section className="p-3 grid grid-cols-2 gap-6">
-          
+
+        
+      <div className="col-span-2 md:col-span-1">
         <Card className="pr-6 pt-6">
           <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={data}>
+            <BarChart data={athletes}>
               <XAxis
-                dataKey="name"
+                dataKey="fullName"
                 stroke="#888888"
                 fontSize={14}
                 fontFamily="Gotham SSm A"
@@ -118,17 +88,32 @@ export const Athletes = () => {
                 tickLine={false}
                 axisLine={false}
               />
-              <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+              <Bar dataKey={labelSatckBar} fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </Card>
-
+        <Select onValueChange={handleChangeStackBar}>
+          <SelectTrigger className="w-[250px] mt-2">
+            <SelectValue placeholder="Seleccionar levantamiento" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Levantamientos</SelectLabel>
+              <SelectItem value="squat">Sentadilla</SelectItem>
+              <SelectItem value="deadlift">Despegue</SelectItem>
+              <SelectItem value="bench">Banca</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+        
+      <div className="col-span-2 md:col-span-1">
         <Card className="pr-6 pt-6">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={350}>
           <LineChart
             width={500}
             height={300}
-            data={data}
+            data={athletes}
             margin={{
               top: 50,
               right: 30,
@@ -136,7 +121,7 @@ export const Athletes = () => {
             }}
           >
             <XAxis
-              dataKey="name"
+              dataKey="fullName"
               stroke="#888888"
               fontSize={14}
               fontFamily="Gotham SSm A"
@@ -152,14 +137,31 @@ export const Athletes = () => {
             />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="total" stroke="hsl(var(--primary))" strokeWidth={4} activeDot={{ r: 8 }} />
+            <Line type="monotone" dataKey={labelLineBar} stroke="hsl(var(--primary))" strokeWidth={4} activeDot={{ r: 8 }} />
           </LineChart>
         </ResponsiveContainer>
         </Card>
-        
+
+        <Select onValueChange={handleChangeLineBar}>
+          <SelectTrigger className="w-[250px] mt-2">
+            <SelectValue placeholder="Seleccionar levantamiento" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Levantamientos</SelectLabel>
+              <SelectItem value="squat">Sentadilla</SelectItem>
+              <SelectItem value="deadlift">Despegue</SelectItem>
+              <SelectItem value="bench">Banca</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
       </section>
 
     </main>
     </Layout>
   )
 }
+
+
+

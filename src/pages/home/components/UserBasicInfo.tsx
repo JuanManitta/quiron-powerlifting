@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux'
 
 export const UserBasicInfo = () => {
 
-  const { userData, savingUserData } = useSelector((state: RootState) => state.user );
+  const { userData, savingUserData, athletes } = useSelector((state: RootState) => state.user );
+  
+  const athletesQuantity = athletes.length;
   
 
   return (
@@ -50,7 +52,7 @@ export const UserBasicInfo = () => {
           <p className="text-3xl font-bold text-center">Atletas</p>
         { 
         !savingUserData ?
-          <p className="text-center">0</p>
+          <p className="text-center">{athletesQuantity}</p>
         : <>
           <Skeleton className="h-4 w-full"/>
           <Skeleton className="mt-2 h-4 w-full"/>

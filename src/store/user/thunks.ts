@@ -1,5 +1,5 @@
 import { loadUserData } from "@/helpers";
-import { addNewAthlete, savingAthlete, savingUserData, setAthletes, setUserData } from ".";
+import { savingAthlete, savingUserData, setAthletes, setUserData } from ".";
 import { Dispatch } from "@reduxjs/toolkit";
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "@/firebase/config";
@@ -27,7 +27,7 @@ export const startAddingNewAthlete = ( athlete: any ) => {
 
         const newAthlete = doc(collection(FirebaseDB,`${uid}/athletes/data`));
         await setDoc(newAthlete, athlete);
-        dispatch(addNewAthlete(athlete));
+        dispatch<any>(startLoadingAthletes())
     }
 }
 
