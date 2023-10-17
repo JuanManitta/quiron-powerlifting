@@ -1,65 +1,33 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { NewAthleteForm } from "./form/NewAthleteForm"
 import { Edit } from "lucide-react"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store/store"
+import ClipLoader from "react-spinners/ClipLoader"
 
 
 export const UserAthletesTable = () => {
 
  
+  const { athletes, savingAthlete } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
 
   const handleNavigate = (index: number) => {
     navigate(`/athletes/${index}`);
   }
-  const invoices = [
-    {
-      name: "Juan Manitta",
-      squat: "200",
-      bench:"100",
-      deadlift: "180",
-    },
-    {
-      name: "Luis Virgini",
-      squat: "220",
-      bench:"100",
-      deadlift: "300",
-    },
-    {
-      name: "Marina Mazzocchini",
-      squat: "120",
-      bench:"100",
-      deadlift: "130",
-    },
-    {
-      name: "Juan Manittas",
-      squat: "200",
-      bench:"100",
-      deadlift: "180",
-    },
-    {
-      name: "Luis Virginii",
-      squat: "220",
-      bench:"100",
-      deadlift: "300",
-    },
-    {
-      name: "Marina Mazzocchinii",
-      squat: "120",
-      bench:"100",
-      deadlift: "130",
-    }, 
-  ];
-
-
 
   return (
     <Card>
+      { ( athletes.length <= 0 ) || savingAthlete ? 
+      <div className="flex justify-center items-center h-40">
+        <ClipLoader color="#36d7b7" size={90} />
+      </div>
+      :
         <Table>
-          <TableCaption>A list of your recent names.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[300px]">Atleta</TableHead>
@@ -88,15 +56,15 @@ export const UserAthletesTable = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-                {invoices.map((invoice, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="font-medium">{invoice.name}</TableCell>
-                    <TableCell>{invoice.squat}</TableCell>
-                    <TableCell>{invoice.bench}</TableCell>
-                    <TableCell>{invoice.deadlift}</TableCell>
+                {athletes.map((athlete ) => (
+                  <TableRow key={athlete.id}>
+                    <TableCell className="font-medium">{athlete.fullName}</TableCell>
+                    <TableCell>{athlete.squat}</TableCell>
+                    <TableCell>{athlete.bench}</TableCell>
+                    <TableCell>{athlete.deadlift}</TableCell>
                     <TableCell></TableCell>
                     <TableCell>
-                      <Button variant='ghost' onClick={()=>handleNavigate(index)}>
+                      <Button variant='ghost' onClick={()=>handleNavigate(athlete.id)}>
                         <Edit/>
                       </Button>
                     </TableCell>
@@ -104,6 +72,7 @@ export const UserAthletesTable = () => {
                 ))}
               </TableBody>
         </Table>
+            } 
       </Card>
   )
 }

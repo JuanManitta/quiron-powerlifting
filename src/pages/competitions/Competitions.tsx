@@ -1,6 +1,9 @@
+import Layout from "@/Layout"
 
 export const Competitions = () => {
   return (
-    <div>Competitions</div>
+    <Layout>
+      <div>En desarrollo</div>
+    </Layout>
   )
 }

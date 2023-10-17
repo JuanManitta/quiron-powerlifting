@@ -27,13 +27,7 @@ export const registerValidators = ( values: RegisterProps) => {
     } else if (values.gym_name.length < 3) {
       errors.gym_name = 'Deben ser 3 caracteres o más';
     }
-
-    if (!values.foundation_date) {
-      errors.foundation_date = 'Campo obligatorio';
-    } else if (values.foundation_date > new Date()) {
-      errors.foundation_date = 'No puede ser una fecha posterior al día de hoy';
-    }
-
+    
     if (!values.gold_medals) {
       errors.gold_medals = 'Campo obligatorio';
     } else if (values.gold_medals < 0) {

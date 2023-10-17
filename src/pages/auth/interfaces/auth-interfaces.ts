@@ -3,7 +3,7 @@ export interface RegisterProps {
     email: string;
     password: string;
     gym_name: string;
-    foundation_date: Date | undefined;
+    foundation_date: string | undefined;
     gold_medals: number;
     silver_medals: number;
     bronce_medals: number;

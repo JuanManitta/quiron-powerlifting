@@ -1,5 +1,7 @@
 
 import Layout from "@/Layout";
+
+
 import { UserAthletesTable, UserBasicInfo, UserBasicStatistics } from "./components";
 
 export const Home = () => {

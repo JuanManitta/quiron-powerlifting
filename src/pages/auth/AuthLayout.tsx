@@ -30,7 +30,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
 
   return (
     <ThemeProvider>
-        <main className="grid grid-cols-12 min-h-screen">
+        <main className="grid grid-cols-12 min-h-screen mx-auto">
            
            <section className="col-span-12 xl:col-span-4 flex flex-col flex-1 justify-center px-8 md:px-32 lg:px-32 xl:px-16">
                 <h1 className="text-4xl md:text-6xl text-center mb-6 font-bold">

@@ -3,8 +3,6 @@ import { AuthLayout } from "."
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useFormik } from 'formik';
-
-
 import {
     Popover,
     PopoverContent,
@@ -29,7 +27,7 @@ export const Register = () => {
   const { status, errorMessage } = useSelector((state: RootState) => state.auth);
   const isCheckingAuth = useMemo(() => status === 'checking', [status]);
 
-  const [date, setDate] = React.useState<Date | undefined>()
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
 
 
   const validate = ( values: RegisterProps ) => {
@@ -44,25 +42,19 @@ export const Register = () => {
       email: '',
       password: '',
       gym_name: '',
-      foundation_date: new Date(),
+      foundation_date: '',
       gold_medals: 0,
       silver_medals: 0,
       bronce_medals: 0,
     },
     validate,
       onSubmit: ( values: RegisterProps ) => {
-
-        values.foundation_date = date;
-
+        values.foundation_date = date?.toISOString();
         dispatch<any>(startCreatingUser(values));
     },
   }) 
 
   
-
-
-
-
   return (
     <AuthLayout>
         <>

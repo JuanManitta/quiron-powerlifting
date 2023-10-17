@@ -16,7 +16,7 @@ export const App = () => {
   const navigate = useNavigate();
 
   const handleNavigate = (path:Path) => {
-    navigate(path);
+    navigate(`auth/${path}`);
   }
 
 
@@ -38,7 +38,7 @@ export const App = () => {
         </NavigationMenuList>
       </NavigationMenu>
       <Separator />
-      <main>
+      <main className="mx-auto">
         <section className="p-6">
           <div className="grid grid-cols-2 h-screen justify-center items-center m-auto max-w-7xl ">
             <div className="col-span-2 lg:col-span-1 flex justify-center lg:justify-end">
@@ -46,7 +46,7 @@ export const App = () => {
                 <h1 className="text-4xl md:text-6xl text-left md:text-center font-bold mb-4 ">DASH Powerlifting</h1>
                 <p className="text-left text-md md:text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias ratione sapiente ea hic incidunt dolor aliquam porro vero obcaecati repudiandae. Recusandae dolores sunt voluptatibus numquam dolorem facilis eum unde impedit.</p>
                 <div className="py-12">
-                  <Button size='lg' className="text-lg mt-4">
+                  <Button size='lg' className="text-lg mt-4" onClick={() => handleNavigate('register')}>
                     Comenzar
                   </Button>
                 </div>
@@ -103,7 +103,7 @@ export const App = () => {
             </div>
 
             <div className="col-span-2 py-6">
-              <Button className="ml-12 text-lg" size='lg' variant='secondary'>
+              <Button className="ml-12 text-lg" size='lg' variant='secondary' onClick={() => handleNavigate('register')}>
                 Comenzar
               </Button>
             </div>
@@ -124,7 +124,7 @@ export const App = () => {
             <div className="col-span-2 lg:col-span-1 py-16">
               <p className="text-md md:text-lg"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae aperiam omnis odio officia reiciendis repudiandae fugiat accusantium cumque porro explicabo, alias obcaecati corporis ipsam, sapiente distinctio quo accusamus ipsum debitis!</p>
               <div className="py-12">
-                <Button size='lg' className="text-lg" >
+                <Button size='lg' className="text-lg" onClick={() => handleNavigate('register')} >
                   Comenzar
                 </Button>
               </div>

@@ -20,7 +20,7 @@ export const AppRouter = () => {
       }
       
       {
-        (status === 'authenticated' || status === 'checking')
+        (status === 'authenticated' || status === 'not-authenticated')
         ? null
         : <Route path="/" element={<App/>} />
       }

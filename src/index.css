@@ -42,6 +42,10 @@ nav{
   min-height: calc(100vh - 65px);
 }
 
+.text-upper-first::first-letter {
+  text-transform: uppercase;
+}
+
 @layer base {
   .light {
     --background: 0 0% 100%;
