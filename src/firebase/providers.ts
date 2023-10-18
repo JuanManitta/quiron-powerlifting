@@ -20,11 +20,11 @@ export const registerUserWithEmailAndPassword = async ( userData: RegisterProps)
         
     }
     catch (error: any) {
-        const errorMessage = error.message;
+        
 
         return {
             ok: false,
-            errorMessage
+            errorMessage: 'El correo ya esta en uso'
         };
     }
 }
@@ -35,6 +35,7 @@ export const loginUserWithEmailAndPassword = async ( userData: LoginProps ) => {
 
     try {
         const resp = await signInWithEmailAndPassword( FirebaseAuth, email, password );
+        console.log(resp);
         
         const { uid, photoURL, displayName   } = resp.user;
         return {
@@ -43,9 +44,12 @@ export const loginUserWithEmailAndPassword = async ( userData: LoginProps ) => {
 
         }
     } catch (error: any) {
+
+        
+        
          return {
             ok: false,
-            errorMessage: error.message
+            errorMessage: 'Usuario o contraseña incorrectos'
          }   
     }
 }

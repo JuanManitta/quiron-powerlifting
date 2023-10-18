@@ -5,17 +5,19 @@ import { Button } from "@/components/ui/button"
 import { useFormik } from "formik"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { startLoginUser } from "@/store/auth"
+import { setError, startLoginUser } from "@/store/auth"
 import { RootState } from "@/store/store"
-import { useMemo } from "react"
-import { Alert, AlertTitle } from "@/components/ui/alert"
-import { XOctagon } from "lucide-react"
+import { useEffect, useMemo } from "react"
 import { LoginProps } from "./interfaces/auth-interfaces"
+import { useToast } from '@/components/ui/use-toast';
+import { ToastAction } from "@/components/ui/toast"
+import { Toaster } from "@/components/ui/toaster"
 
 
 
 export const Login = () => {
 
+    const { toast } = useToast();
     const dispatch = useDispatch();
     const { status, errorMessage } = useSelector((state: RootState) => state.auth);
     const isCheckingAuth = useMemo(() => status === 'checking', [status]);
@@ -30,8 +32,20 @@ export const Login = () => {
             dispatch<any>(startLoginUser(values))
         },
       })
-      
 
+      useEffect(() => {
+        if (errorMessage) {
+          toast({
+            variant:'destructive',
+            title: errorMessage,
+            action: <ToastAction altText="Goto schedule to undo">Close</ToastAction>,
+          });
+        }
+        dispatch(setError(null))
+      }, [errorMessage]);
+     
+
+      
 
   return (
 
@@ -58,10 +72,6 @@ export const Login = () => {
                 </div>
             
             <a href="" className="text-sm">Olvidé mi contraseña</a>
-            <Alert className={`mt-6 ${!!errorMessage ? 'block' : 'hidden' }`}>
-                <XOctagon size={16} color="hsl(var(--primary)" />
-                  <AlertTitle className="m-0">{ errorMessage }</AlertTitle>
-                </Alert>
             <div className="mt-6">
                 <Button size='lg' type="submit" className="w-full"
                     disabled={isCheckingAuth}>
@@ -76,6 +86,7 @@ export const Login = () => {
                 </Button>
             </Link>
         </div>
+            <Toaster/>
         </>
     </AuthLayout>
   )

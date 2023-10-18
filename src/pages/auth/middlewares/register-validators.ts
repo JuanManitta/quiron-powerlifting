@@ -1,7 +1,7 @@
 import { RegisterProps } from "../interfaces/auth-interfaces";
 
 export const registerValidators = ( values: RegisterProps) => {
-
+  
     const errors: any = {}
 
     if (!values.fullName) {
@@ -28,18 +28,20 @@ export const registerValidators = ( values: RegisterProps) => {
       errors.gym_name = 'Deben ser 3 caracteres o más';
     }
     
-    if (!values.gold_medals) {
+    if ( typeof values.gold_medals !== 'number' ) {
+      console.log(values.gold_medals);
+      
       errors.gold_medals = 'Campo obligatorio';
     } else if (values.gold_medals < 0) {
       errors.gold_medals = 'No puede ser negativo';
     }
-    if (!values.silver_medals) {
+    if ( typeof values.gold_medals !== 'number' ) {
       errors.silver_medals = 'Campo obligatorio';
     } else if (values.silver_medals < 0) {
       errors.silver_medals = 'No puede ser negativo';
     }
 
-    if (!values.bronce_medals) {
+    if ( typeof values.gold_medals !== 'number' ) {
       errors.bronce_medals = 'Campo obligatorio';
     } else if (values.bronce_medals < 0) {
       errors.bronce_medals = 'No puede ser negativo';

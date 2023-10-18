@@ -146,6 +146,10 @@ export const Register = () => {
                           </PopoverTrigger>
                           <PopoverContent>
                             <Calendar mode="single"
+                                captionLayout="dropdown-buttons"
+                                fromYear={1900}
+                                toYear={2030}
+                                className="p-0"
                                 id="foundation_date"
                                 selected={date}
                                 onSelect={setDate}

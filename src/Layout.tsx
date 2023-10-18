@@ -9,6 +9,7 @@ import { LogOut} from "lucide-react";
 import { Button } from "./components/ui/button";
 import { useDispatch } from "react-redux";
 import { startLogout } from "./store/auth";
+import { Toaster } from "./components/ui/toaster";
 
 type LayoutProps = {
   children: React.ReactNode
@@ -67,6 +68,7 @@ const Layout = ({children}: LayoutProps) => {
 
       <Separator />
       {children}
+      <Toaster/>
       </ThemeProvider>
   )
 }
