@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card"
 
-import { Bar, BarChart, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import Layout from "@/Layout";
 
 import './athletes.css';
@@ -116,8 +116,9 @@ export const Athletes = () => {
             data={athletes}
             margin={{
               top: 50,
-              right: 30,
+              right: 0,
               bottom: 5,
+              left: 3,
             }}
           >
             <XAxis
@@ -136,8 +137,8 @@ export const Athletes = () => {
               axisLine={false}
             />
             <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey={labelLineBar} stroke="hsl(var(--primary))" strokeWidth={4} activeDot={{ r: 8 }} />
+            {/* <Legend /> */}
+            <Line type="monotone" dataKey={labelLineBar} stroke="hsl(var(--primary))" strokeWidth={3} activeDot={{ r: 8 }} />
           </LineChart>
         </ResponsiveContainer>
         </Card>

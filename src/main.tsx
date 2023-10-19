@@ -6,6 +6,7 @@ import './index.css';
 import { store } from './store/store';
 import { AppRouter } from './router/AppRouter';
 import { BrowserRouter } from 'react-router-dom';
+import { Toaster } from './components/ui/toaster';
 
 
 const rootElement = document.getElementById('root')!
@@ -16,6 +17,7 @@ if (!rootElement.innerHTML) {
       <Provider store={store}>
         <BrowserRouter>
           <AppRouter />
+          <Toaster/>
         </BrowserRouter>
       </Provider>
     </StrictMode>,

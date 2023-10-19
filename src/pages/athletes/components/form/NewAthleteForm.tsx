@@ -13,10 +13,10 @@ import { useMemo } from "react";
 
 interface FormValues {
   fullName: string;
-  age: string;
-  squat: string;
-  bench: string;
-  deadlift: string;
+  age: number;
+  squat: number;
+  bench: number;
+  deadlift: number;
   federation: string;
   isActive: boolean;
 }
@@ -36,10 +36,10 @@ export const NewAthleteForm = () => {
   const formik = useFormik({
     initialValues: {
       fullName: '',
-      age: '',
-      squat: '',
-      bench: '',
-      deadlift: '',
+      age: 0,
+      squat: 0,
+      bench: 0,
+      deadlift: 0,
       federation: '',
       isActive: false,
       },
@@ -78,6 +78,7 @@ export const NewAthleteForm = () => {
           </Label>
           <Input
             id="age"
+            type="number"
             placeholder="29"
             className="col-span-3"
             onChange={formik.handleChange}
@@ -95,6 +96,7 @@ export const NewAthleteForm = () => {
           </Label>
           <Input
             id="squat"
+            type="number"
             placeholder="230"
             className="col-span-3"
             onChange={formik.handleChange}
@@ -111,6 +113,7 @@ export const NewAthleteForm = () => {
             Banco
           </Label>
           <Input
+            type="number"
             id="bench"
             placeholder="120"
             className="col-span-3"
@@ -129,6 +132,7 @@ export const NewAthleteForm = () => {
           </Label>
           <Input
             id="deadlift"
+            type="number"
             placeholder="290"
             className="col-span-3"
             onChange={formik.handleChange}

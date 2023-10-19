@@ -21,7 +21,6 @@ export const registerUserWithEmailAndPassword = async ( userData: RegisterProps)
     }
     catch (error: any) {
         
-
         return {
             ok: false,
             errorMessage: 'El correo ya esta en uso'

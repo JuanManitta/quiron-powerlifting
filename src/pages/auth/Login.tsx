@@ -11,7 +11,6 @@ import { useEffect, useMemo } from "react"
 import { LoginProps } from "./interfaces/auth-interfaces"
 import { useToast } from '@/components/ui/use-toast';
 import { ToastAction } from "@/components/ui/toast"
-import { Toaster } from "@/components/ui/toaster"
 
 
 
@@ -38,7 +37,7 @@ export const Login = () => {
           toast({
             variant:'destructive',
             title: errorMessage,
-            action: <ToastAction altText="Goto schedule to undo">Close</ToastAction>,
+            action: <ToastAction altText="Goto schedule to undo">Cerrar</ToastAction>,
           });
         }
         dispatch(setError(null))
@@ -86,7 +85,6 @@ export const Login = () => {
                 </Button>
             </Link>
         </div>
-            <Toaster/>
         </>
     </AuthLayout>
   )

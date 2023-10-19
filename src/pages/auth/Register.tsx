@@ -9,16 +9,16 @@ import {
     PopoverTrigger,
   } from "@/components/ui/popover"
 import { Calendar } from "@/components/ui/calendar"
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo } from "react"
 import { Separator } from "@/components/ui/separator"
 import { Link } from "react-router-dom"
 import { RegisterProps } from "./interfaces/auth-interfaces";
 import { registerValidators } from "./middlewares/register-validators";
 import { useDispatch, useSelector } from "react-redux";
-import { startCreatingUser } from "@/store/auth";
+import { setError, startCreatingUser } from "@/store/auth";
 import { RootState } from "@/store/store";
-import { Alert, AlertTitle } from "@/components/ui/alert";
-import { XOctagon } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 
 export const Register = () => {
@@ -53,6 +53,21 @@ export const Register = () => {
         dispatch<any>(startCreatingUser(values));
     },
   }) 
+
+  useEffect(() => {
+    if (errorMessage) {
+      toast({
+        variant:'destructive',
+        title: errorMessage,
+        action: <ToastAction altText="Goto schedule to undo">Cerrar</ToastAction>,
+      });
+    }
+    dispatch(setError(null))
+  }, [errorMessage]);
+ 
+
+  
+
 
   
   return (
@@ -229,10 +244,6 @@ export const Register = () => {
                     Registrarme
                 </Button>
                 </div>
-                <Alert className={`mt-6 ${!!errorMessage ? 'block' : 'hidden' }`}>
-                <XOctagon size={16} color="hsl(var(--primary)" />
-                  <AlertTitle className="m-0">{ errorMessage }</AlertTitle>
-                </Alert>
             </form>
             <Link to="/auth/login" className="w-full">
             <Button size='lg' variant='outline' className="w-full">

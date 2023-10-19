@@ -54,10 +54,12 @@ export const UserAthletesTable = () => {
               <TableHead>Sentadilla</TableHead>
               <TableHead>Banco</TableHead>
               <TableHead>Despegue</TableHead>
-              <TableHead className="w-1/6 p-2">
+              <TableHead>Total</TableHead>
+              <TableHead>Federación</TableHead>
+              <TableHead className="p-2 w-[200px]">
                 <Dialog>
                     <DialogTrigger asChild>
-                      <Button size='lg'>Nuevo atleta</Button>
+                      <Button className="w-full" size='lg'>Nuevo atleta</Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[500px]">
                       <DialogHeader>
@@ -72,20 +74,20 @@ export const UserAthletesTable = () => {
                     </DialogContent>
                 </Dialog>
               </TableHead>
-              <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-                {athletes.map((athlete ) => (
-                  <TableRow key={athlete.id}>
-                    <TableCell className="font-medium">{athlete.fullName}</TableCell>
-                    <TableCell>{athlete.squat}</TableCell>
-                    <TableCell>{athlete.bench}</TableCell>
-                    <TableCell>{athlete.deadlift}</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>
-                      <Button variant='ghost' onClick={()=>handleNavigate(athlete.id)}>
-                        <Edit/>
+                {athletes.map(({fullName, squat, id, bench, deadlift, federation} ) => (
+                  <TableRow key={id}>
+                    <TableCell className="font-medium">{fullName}</TableCell>
+                    <TableCell>{ squat }kg</TableCell>
+                    <TableCell>{ bench }kg</TableCell>
+                    <TableCell>{ deadlift }kg</TableCell>
+                    <TableCell>{ squat + deadlift + bench }kg</TableCell>
+                    <TableCell>{ federation }</TableCell>
+                    <TableCell className="flex justify-end">
+                      <Button variant='ghost' onClick={()=>handleNavigate(id)}>
+                        <Edit size={20}/>
                       </Button>
                     </TableCell>
                   </TableRow>
