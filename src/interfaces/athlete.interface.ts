@@ -6,6 +6,6 @@ export interface Athlete {
     squat: number,
     deadlift: number,
     total?: number,
-    isActive: boolean,
+    isActive: JSX.Element | boolean,
     federation: string,
 }

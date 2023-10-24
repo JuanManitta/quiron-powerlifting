@@ -22,7 +22,6 @@ interface DataTableProps<TData, TValue> {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
     
-    
     const table = useReactTable({
       data,
       columns,
@@ -38,9 +37,7 @@ interface DataTableProps<TData, TValue> {
         columnFilters,
         columnVisibility,
       }
-    })
-
-    
+    })    
 
     return (
         <div className="animate__animated animate__fadeIn">
@@ -129,7 +126,7 @@ interface DataTableProps<TData, TValue> {
                       >
                         {row.getVisibleCells().map((cell) => (
                           <TableCell key={cell.id}>
-                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())} 
                           </TableCell>
                         ))}
                       </TableRow>

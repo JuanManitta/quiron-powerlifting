@@ -8,6 +8,10 @@ import { Athlete } from "@/interfaces/athlete.interface"
 import { DataTable } from "./DataTable"
 import { columns } from "./Columns"
 
+export interface updatedAthletes{
+  isActive: string;
+  total: number;
+}
 
 export const UserAthletesTable = () => {
 
@@ -17,7 +21,7 @@ export const UserAthletesTable = () => {
 
 
   useEffect(() => {
-    const updatedAthletes = athletes.map((athlete) => {
+    const updatedAthletes:Athlete[]  = athletes.map((athlete) => {
       return {
         ...athlete,
         total: athlete.squat + athlete.deadlift + athlete.bench

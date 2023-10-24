@@ -1,9 +1,10 @@
 import { loadUserData } from "@/helpers";
 import { savingAthlete, savingUserData, setAthletes, setUserData } from ".";
 import { Dispatch } from "@reduxjs/toolkit";
-import { collection, doc, setDoc } from "firebase/firestore/lite";
+import { collection, deleteDoc, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "@/firebase/config";
 import { loadAthletesData } from "@/helpers/loadAthletesData";
+import { Athlete } from "@/interfaces/athlete.interface";
 
 export const startLoadingUserData = () => {
 
@@ -15,6 +16,17 @@ export const startLoadingUserData = () => {
         const userData = await loadUserData(uid);
         
         dispatch(setUserData(userData))
+    }
+}
+
+export const startLoadingAthletes = () => {
+    return async( dispatch: Dispatch, getState:any ) => {
+        dispatch(savingAthlete());
+
+        const { uid } = getState().auth;
+        const athletes = await loadAthletesData(uid);
+        
+        dispatch(setAthletes(athletes));        
     }
 }
 
@@ -31,13 +43,33 @@ export const startAddingNewAthlete = ( athlete: any ) => {
     }
 }
 
-export const startLoadingAthletes = () => {
-    return async( dispatch: Dispatch, getState:any ) => {
+export const startDeletingAthlete = ( athleteId: string ) => {
+    return async( dispatch: Dispatch, getState: any ) => {
+
         dispatch(savingAthlete());
 
         const { uid } = getState().auth;
-        const athletes = await loadAthletesData(uid);
-        
-        dispatch(setAthletes(athletes));        
+        const athleteRef = doc(FirebaseDB, `${uid}/athletes/data/${athleteId}`);
+        await deleteDoc(athleteRef);
+        dispatch<any>(startLoadingAthletes());
     }
+}
+
+export const startEditingAthleteStatus = ( athlete: Athlete ) => {
+
+    return async( dispatch: Dispatch, getState: any ) => {
+
+        
+        dispatch(savingAthlete());
+
+        const { uid } = getState().auth;
+        const athleteRef = doc(FirebaseDB, `${uid}/athletes/data/${athlete.id}`);
+        const updatedAthlete = {
+            ...athlete,
+            isActive: !athlete.isActive
+        }
+        await setDoc(athleteRef, updatedAthlete);
+        dispatch<any>(startLoadingAthletes());
+    }
+
 }
