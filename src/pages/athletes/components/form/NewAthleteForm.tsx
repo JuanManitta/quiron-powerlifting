@@ -1,15 +1,19 @@
+import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+
+import { useFormik } from 'formik';
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
-import { useFormik } from 'formik';
-import { newAthleteValidators } from "./middlewares/new-athlete-validators";
 import { DialogFooter } from "@/components/ui/dialog";
-import { useDispatch, useSelector } from "react-redux";
-import { startAddingNewAthlete } from "@/store/user";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { RootState } from "@/store/store";
-import { useMemo } from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+import { newAthleteValidators } from "./middlewares/new-athlete-validators";
+import { startAddingNewAthlete } from "@/store/user";
 
 interface FormValues {
   fullName: string;
@@ -22,9 +26,10 @@ interface FormValues {
 }
 export const NewAthleteForm = () => {
 
-  
+
   const dispatch = useDispatch();
-  
+  const [isActive, setIsActive] = useState(true)
+
   const {savingAthlete } = useSelector((state: RootState) => state.user);
   const isSavingAthlete = useMemo(() => savingAthlete, [savingAthlete]);
 
@@ -41,15 +46,19 @@ export const NewAthleteForm = () => {
       bench: 0,
       deadlift: 0,
       federation: '',
-      isActive: false,
+      isActive: true,
       },
       validate,
       onSubmit: ( values: FormValues ) => {
-        console.log(values);
         dispatch<any>(startAddingNewAthlete(values));
     },
   })
-  
+
+  const handleChange = () => {
+    setIsActive(!isActive)
+    formik.setFieldValue('isActive', !isActive);
+  }
+
   
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -148,13 +157,21 @@ export const NewAthleteForm = () => {
           <Label htmlFor="federation" className="text-right">
             Federación
           </Label>
-          <Input
-            id="federation"
-            placeholder="Falpo-ipf"
-            className="col-span-3"
-            onChange={formik.handleChange}
-            value={formik.values.federation}
-          />
+          <Select
+            onValueChange={(value) => formik.setFieldValue('federation', value)}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder='Seleccionar'/>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="FALPO-IPF">FALPO - IPF</SelectItem>
+              <SelectItem value="AAP-IPO">AAP - IPO</SelectItem>
+              <SelectItem value="APUA-WABDL">APUA - WABDL</SelectItem>
+              <SelectItem value="WRPF-Argentina">WRPF - Argentina</SelectItem>
+              <SelectItem value="ARPL-IPL">ARPL - IPL</SelectItem>
+              <SelectItem value="FEPOA-GPC">FEPOA - GPC</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         {formik.errors.federation ? (
           <div className="ml-auto">
@@ -165,7 +182,9 @@ export const NewAthleteForm = () => {
           <Label htmlFor="isActive" className="text-right">
             En actividad
           </Label>
-          <Switch id="isActive" />
+          <Switch  
+            checked={isActive}
+            onCheckedChange={handleChange}/>
         </div>
       </div>
       <DialogFooter>

@@ -6,8 +6,8 @@ export const registerValidators = ( values: RegisterProps) => {
 
     if (!values.fullName) {
         errors.fullName = 'Campo obligatorio';
-      } else if (values.fullName.length > 15) {
-        errors.fullName = 'Deben ser menos de 15 caracteres';
+      } else if (values.fullName.length > 25) {
+        errors.fullName = 'Deben ser menos de 25 caracteres';
     }
   
     if (!values.email) {

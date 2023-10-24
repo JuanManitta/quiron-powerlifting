@@ -1,4 +1,6 @@
+import { Athlete } from "@/interfaces/athlete.interface";
 import { createSlice } from "@reduxjs/toolkit";
+
 
 
 export const user = createSlice({
@@ -14,7 +16,7 @@ export const user = createSlice({
             bronce_medals: 0,
         },
         savingUserData: false,
-        athletes: [] as any[],
+        athletes: [] as Athlete[],
         savingAthlete: false,
     },
     reducers: {
