@@ -24,7 +24,7 @@ export const AthleteID = () => {
 
 
   return (
-    <Layout>
+    <Layout backNav={true}>
       <main className="p-0 max-w-full relative">
         { !savingAthlete && activeAthlete !== null ? ( 
         <> <section>
