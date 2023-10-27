@@ -1,7 +1,7 @@
 import { loadUserData } from "@/helpers";
-import { savingAthlete, savingUserData, setAthletes, setUserData } from ".";
+import { savingAthlete, savingUserData, setActiveAthlete, setAthletes, setUserData } from ".";
 import { Dispatch } from "@reduxjs/toolkit";
-import { collection, deleteDoc, doc, setDoc } from "firebase/firestore/lite";
+import { collection, deleteDoc, doc, setDoc, getDoc } from 'firebase/firestore/lite';
 import { FirebaseDB } from "@/firebase/config";
 import { loadAthletesData } from "@/helpers/loadAthletesData";
 import { Athlete } from "@/interfaces/athlete.interface";
@@ -72,4 +72,20 @@ export const startEditingAthleteStatus = ( athlete: Athlete ) => {
         dispatch<any>(startLoadingAthletes());
     }
 
+}
+
+export const startGetingAthleteById = ( athleteId: string ) => {
+    
+        return async( dispatch: Dispatch, getState: any ) => {
+    
+            dispatch(savingAthlete());
+    
+            const { uid } = getState().auth;
+            const athleteRef = doc(FirebaseDB, `${uid}/athletes/data/${athleteId}`);
+            const athlete = await getDoc(athleteRef);
+
+            const athleteData = athlete.data();            
+            dispatch(setActiveAthlete(athleteData));
+            
+        }
 }

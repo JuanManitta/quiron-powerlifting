@@ -15,6 +15,7 @@ export const user = createSlice({
             silver_medals: 0,
             bronce_medals: 0,
         },
+        activeAthlete: null as Athlete | null,
         savingUserData: false,
         athletes: [] as Athlete[],
         savingAthlete: false,
@@ -51,6 +52,11 @@ export const user = createSlice({
             state.savingAthlete = false;
         },
 
+        setActiveAthlete: (state, action) => {
+            state.activeAthlete = action.payload;
+            state.savingAthlete = false;
+        }
+
         // addNewAthlete: (state, action) => {
         //     state.athletes.push(action.payload);
         //     state.savingAthlete = false;
@@ -64,4 +70,5 @@ export const {
     setAthletes,
     clearUserData,
     savingAthlete,
+    setActiveAthlete
     } = user.actions;
