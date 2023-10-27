@@ -6,9 +6,9 @@ import { startGetingAthleteById } from "@/store/user";
 
 import athleteBg from '@/assets/athlete-bg.webp';
 import { RootState } from "@/store/store";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
+import ClipLoader from "react-spinners/ClipLoader";
+import { Profile } from "./components/Profile";
+import { Competitions } from "./components/Competitions";
 
 export const AthleteID = () => {
 
@@ -42,37 +42,21 @@ export const AthleteID = () => {
           </div>
         </section>
         
-        <section className="mt-3 grid gap-3 grid-cols-2 max-w-[1440px] mx-auto px-3 lg:px-0">
+        <section className="mt-3 grid gap-3 grid-cols-2 max-w-[1440px] mx-auto px-3">
          
-          <Card className="col-span-2 md:col-span-1  p-6">
-            <h2 className="text-3xl font-bold">Perfil</h2>
-            <Separator className="mb-6 mt-2"/>
-            <ul className="grid gap-6">
-              <li> Edad: ${activeAthlete.age}</li>
-              <li> Sentadilla: {activeAthlete.squat}kg</li>
-              <li> Banco: {activeAthlete.bench}kg</li>
-              <li> Despegue: {activeAthlete.deadlift}kg</li>
-              <li> Total: {activeAthlete.deadlift + activeAthlete.bench + activeAthlete.squat}kg</li>
-            </ul>
-            <Separator className="mb-6 mt-6"/>
-            <ul className="grid gap-4">
-              <li> Federación: {activeAthlete.federation}</li>
-              <li> Ultima competencia: Sudamericano Perú  </li>
-              <li> Proxima competencia: Nacional Argentina </li>
-              <li> Estado: { 
-                <Badge 
-                  variant={ activeAthlete.isActive ? "destructive" : "secondary" }>
-                  { activeAthlete.isActive ? "Activo" : "Inactivo" }
-                </Badge>}
-              </li>
-            </ul>
-          </Card>
-          <Card className="col-span-2 md:col-span-1 h-[500px]">
-            
-          </Card>
+         <div className="col-span-2 md:col-span-1">
+          <Profile activeAthlete={activeAthlete}/>
+        </div>
+
+        <div className="col-span-2 md:col-span-1">
+          <Competitions/>
+        </div>
 
         </section> 
-        </> ) : ( <h1>Cargando</h1>) }
+        </> ) : ( 
+        <div className="min-h-[900px] flex justify-center items-center">
+          <ClipLoader size={140} color="#36d7b7"/>
+        </div>) }
       </main>
     </Layout>
   )
