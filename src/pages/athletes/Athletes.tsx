@@ -68,7 +68,10 @@ export const Athletes = () => {
 
         
       <div className="col-span-2 md:col-span-1">
+
+
         <Card className="pr-6 pt-6">
+          { athletes.length > 0 ? (
           <ResponsiveContainer width="100%" height={350}>
             <BarChart data={athletes}>
               <XAxis
@@ -90,8 +93,14 @@ export const Athletes = () => {
               />
               <Bar dataKey={labelSatckBar} fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
             </BarChart>
-          </ResponsiveContainer>
+          </ResponsiveContainer> ) : (
+            <div className="flex justify-center items-center h-[350px]">
+              <p className="text-xl text-center">No se encontraron datos de atletas</p>
+            </div>
+          )}
         </Card>
+
+
         <Select onValueChange={handleChangeStackBar}>
           <SelectTrigger className="w-[250px] mt-2">
             <SelectValue placeholder="Seleccionar levantamiento" />
@@ -109,6 +118,7 @@ export const Athletes = () => {
         
       <div className="col-span-2 md:col-span-1">
         <Card className="pr-6 pt-6">
+        { athletes.length > 0 ? (
         <ResponsiveContainer width="100%" height={350}>
           <LineChart
             width={500}
@@ -140,7 +150,11 @@ export const Athletes = () => {
             {/* <Legend /> */}
             <Line type="monotone" dataKey={labelLineBar} stroke="hsl(var(--primary))" strokeWidth={3} activeDot={{ r: 8 }} />
           </LineChart>
-        </ResponsiveContainer>
+        </ResponsiveContainer> ) : (
+          <div className="flex justify-center items-center h-[350px]">
+            <p className="text-xl text-center">No se encontraron datos de atletas</p>
+          </div>
+        )}
         </Card>
 
         <Select onValueChange={handleChangeLineBar}>

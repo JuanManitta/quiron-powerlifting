@@ -46,6 +46,7 @@ export const Register = () => {
       gold_medals: 0,
       silver_medals: 0,
       bronce_medals: 0,
+      photoUrl: '',
     },
     validate,
       onSubmit: ( values: RegisterProps ) => {

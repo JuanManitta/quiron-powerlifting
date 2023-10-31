@@ -14,6 +14,7 @@ export const user = createSlice({
             gold_medals: 0,
             silver_medals: 0,
             bronce_medals: 0,
+            photoUrl: null,
         },
         activeAthlete: null as Athlete | null,
         savingUserData: false,
@@ -39,6 +40,7 @@ export const user = createSlice({
                 gold_medals: 0,
                 silver_medals: 0,
                 bronce_medals: 0,
+                photoUrl: null,
             }
         },
 
@@ -55,12 +57,13 @@ export const user = createSlice({
         setActiveAthlete: (state, action) => {
             state.activeAthlete = action.payload;
             state.savingAthlete = false;
-        }
+        },
 
-        // addNewAthlete: (state, action) => {
-        //     state.athletes.push(action.payload);
-        //     state.savingAthlete = false;
-        // }
+        setUserPhoto: (state, action) => {
+            state.userData.photoUrl = action.payload;
+            state.savingUserData = false;
+
+        }
     },
 })
 
@@ -70,5 +73,6 @@ export const {
     setAthletes,
     clearUserData,
     savingAthlete,
-    setActiveAthlete
+    setActiveAthlete,
+    setUserPhoto
     } = user.actions;

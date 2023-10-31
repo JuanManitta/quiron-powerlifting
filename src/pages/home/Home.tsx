@@ -10,7 +10,7 @@ export const Home = () => {
   return (
     <Layout>
       
-    <main className="grid grid-cols-12 justify-around gap-6 height-screen ">
+    <main className="grid grid-cols-12 justify-around gap-6 height-screen mx-auto ">
       <section className="col-span-12 md:col-span-4 flex flex-col justify-evenly p-3">
         <UserBasicInfo/>
       </section>

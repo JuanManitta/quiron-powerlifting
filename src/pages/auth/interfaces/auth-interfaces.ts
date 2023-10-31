@@ -7,6 +7,7 @@ export interface RegisterProps {
     gold_medals: number;
     silver_medals: number;
     bronce_medals: number;
+    photoUrl: string;
   }
 
   export interface LoginProps {

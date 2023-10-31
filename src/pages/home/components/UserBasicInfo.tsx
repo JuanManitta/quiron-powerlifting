@@ -1,25 +1,54 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import { RootState } from '@/store/store'
-import { UserCircle } from 'lucide-react'
-import { useSelector } from 'react-redux'
+import { Upload, UserCircle } from 'lucide-react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import profileImg from '@/assets/conan.jpg'
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useRef } from 'react';
+import { startUploadingProfileImage } from '@/store/user';
 
 export const UserBasicInfo = () => {
 
   const { userData, savingUserData, athletes } = useSelector((state: RootState) => state.user );
-  
+  const dispatch = useDispatch();
   const athletesQuantity = athletes.length;
   
+  const fileInputRef = useRef<any>();
+  
+  const onInputFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    if(!e.target.files) return;
+    dispatch<any>(startUploadingProfileImage(e.target.files));
+  }
+
 
   return (
     <>
-    <div className="grid justify-center">
-
+    <div className="grid justify-center mx-auto">
       { 
         !savingUserData ? 
           <>
           <div className='flex justify-center'>
-            <UserCircle size={250} strokeWidth={1.2}  />
+            { !userData.photoUrl ? (
+            <UserCircle 
+              size={250} 
+              strokeWidth={0.4} 
+              onClick={()=> fileInputRef.current.click()} 
+            /> ) : (
+            <img 
+              src={userData.photoUrl} 
+              alt="" 
+              className="mb-9 rounded-full border-4 border-red-100 w-2/3 cursor-pointer"
+              onClick={()=> fileInputRef.current.click()}  
+            />)}
           </div>
+          { !userData.photoUrl ? (
+          <Button className='mb-6' variant='outline' onClick={()=> fileInputRef.current.click()}>
+              <Upload className="mr-2 h-4 w-4" /> Subir imagen
+          </Button> ) : ( null )}
+          <Input type='file' onChange={onInputFileChange} className='hidden' ref={fileInputRef} />
           <p className="font-bold text-5xl text-center mt-4 text-upper-first">
             {userData.fullName}
           </p>
