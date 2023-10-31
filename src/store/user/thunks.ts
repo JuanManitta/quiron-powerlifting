@@ -56,6 +56,21 @@ export const startDeletingAthlete = ( athleteId: string ) => {
     }
 }
 
+export const startUpdatingAthlete = ( athlete: Athlete ) => {
+    
+        return async( dispatch: Dispatch, getState: any ) => {
+    
+            dispatch(savingAthlete());
+    
+            console.log(athlete);
+            
+            const { uid } = getState().auth;
+            const athleteRef = doc(FirebaseDB, `${uid}/athletes/data/${athlete.id}`);
+            await setDoc(athleteRef, athlete);
+            dispatch<any>(startLoadingAthletes());
+        }
+    }
+
 export const startEditingAthleteStatus = ( athlete: Athlete ) => {
 
     return async( dispatch: Dispatch, getState: any ) => {

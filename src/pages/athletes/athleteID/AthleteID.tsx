@@ -7,8 +7,8 @@ import { startGetingAthleteById } from "@/store/user";
 import athleteBg from '@/assets/athlete-bg.webp';
 import { RootState } from "@/store/store";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Profile } from "./components/Profile";
-import { Competitions } from "./components/Competitions";
+import { ProfileAndHistoric } from "./components/profile-historic/ProfileAndHistoric";
+import { Competitions } from "./components/competitions/Competitions";
 
 export const AthleteID = () => {
 
@@ -45,7 +45,7 @@ export const AthleteID = () => {
         <section className="mt-3 grid gap-3 grid-cols-2 max-w-[1440px] mx-auto px-3">
          
          <div className="col-span-2 md:col-span-1">
-          <Profile activeAthlete={activeAthlete}/>
+          <ProfileAndHistoric activeAthlete={ activeAthlete }/>
         </div>
 
         <div className="col-span-2 md:col-span-1">

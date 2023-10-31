@@ -3,7 +3,6 @@ import { RootState } from '@/store/store'
 import { Upload, UserCircle } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import profileImg from '@/assets/conan.jpg'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useRef } from 'react';
@@ -40,7 +39,7 @@ export const UserBasicInfo = () => {
             <img 
               src={userData.photoUrl} 
               alt="" 
-              className="mb-9 rounded-full border-4 border-red-100 w-2/3 cursor-pointer"
+              className="mb-9 rounded-full object-cover border-4 border-red-100 w-2/3 h-full cursor-pointer"
               onClick={()=> fileInputRef.current.click()}  
             />)}
           </div>

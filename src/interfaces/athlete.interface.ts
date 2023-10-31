@@ -8,4 +8,9 @@ export interface Athlete {
     total?: number,
     isActive: JSX.Element | boolean,
     federation: string,
+    last_comp?: string,
+    next_comp?: string,
+    gold_medals?: number,
+    silver_medals?: number,
+    bronze_medals?: number,
 }

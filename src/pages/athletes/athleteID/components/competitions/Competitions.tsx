@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LastCompForm } from "./LastCompForm";
+import { NextCompForm } from "./NextCompForm";
 
 
 export const Competitions = () => {
@@ -12,6 +15,7 @@ export const Competitions = () => {
           <TabsTrigger value="last_comp">Ultima competencia</TabsTrigger>
           <TabsTrigger value="next_comp">Proxima competencia</TabsTrigger>
         </TabsList>
+
         <TabsContent value="last_comp">
           <div className="col-span-2 md:col-span-1 p-6">
             <h2 className="text-3xl font-bold">General</h2>
@@ -32,10 +36,24 @@ export const Competitions = () => {
             </ul>
             <Separator className="mb-6 mt-6"/>
             <div>
-              <Button className="w-full">Editar</Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="w-full">Editar</Button>
+               </DialogTrigger>
+                <DialogContent className="sm:max-w-[500px]">
+                 <DialogHeader>
+                   <DialogTitle className="mb-4">Editar atleta</DialogTitle>
+                    <DialogDescription>
+                      Completa los campos para editar los datos del atleta.
+                    </DialogDescription>
+                  </DialogHeader>
+                    <LastCompForm/>
+                </DialogContent>
+            </Dialog>
             </div>
           </div>
         </TabsContent>
+
         <TabsContent value="next_comp">
           <div className="col-span-2 md:col-span-1 p-6">
             <h2 className="text-3xl font-bold">General</h2>
@@ -55,10 +73,24 @@ export const Competitions = () => {
             </ul>
             <Separator className="mb-6 mt-6"/>
             <div>
-              <Button className="w-full">Editar</Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="w-full">Editar</Button>
+               </DialogTrigger>
+                <DialogContent className="sm:max-w-[500px]">
+                 <DialogHeader>
+                   <DialogTitle className="mb-4">Editar atleta</DialogTitle>
+                    <DialogDescription>
+                      Completa los campos para editar los datos del atleta.
+                    </DialogDescription>
+                  </DialogHeader>
+                    <NextCompForm/>
+                </DialogContent>
+            </Dialog>
             </div>
           </div>
-        </TabsContent>   
+        </TabsContent> 
+
       </Tabs>
     </Card>
   )
