@@ -2,7 +2,7 @@ import { loginUserWithEmailAndPassword, logoutFirebase, registerUserWithEmailAnd
 import { checkingCredentials, login, logout } from "."
 import { LoginProps, RegisterProps } from "@/pages/auth/interfaces/auth-interfaces";
 import { Dispatch } from "@reduxjs/toolkit";
-import { clearUserData, savingUserData, setUserData, user } from "../user";
+import { clearUserData, savingUserData, setUserData } from "../user";
 import { doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "@/firebase/config";
 
